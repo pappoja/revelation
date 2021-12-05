@@ -1,0 +1,52 @@
+.topnav {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #C8C8C8;
+    padding: 24px 50px;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: #000000;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: inline;
+}  
+
+.topnav-right {
+    float: right;
+}
+
+#logo {
+    color:  #ff8b00;
+    font-family: 'Lora', serif;
+    font-size: 1.4em;
+}
+
+.topnav2 {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #C8C8C8;
+    padding: 10px 40px;
+    overflow: hidden;
+}
+
+.topnav2 a {
+    float: left;
+    color: #000000;
+    text-align: center;
+    padding: 0px 10px;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    font-size: 0.9em;
+    display: inline;
+} 
+
+.topnav-right {
+    float: right;
+}
+
+#subscribe {
+    color: #ff8b00;
+}
