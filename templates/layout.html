@@ -24,28 +24,28 @@
     <body>
 
         <div class="topnav">
-            <a id="logo" href="#">revelation</a>
+            <a id="logo" href="/">revelation</a>
             <div class="topnav-right">
-                <a href="#">Log In</a>
+                <div class="search-container">
+                    <form action="/search">
+                      <input type="text" autocomplete="off" placeholder="Search..." name="keyword">
+                      <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <a href="/login">Log In</a>
             </div>
         </div> 
         <div class="topnav2">
-            <a href="#">Explore</a>
-            <a href="#">Publish</a>
-            <a href="#">Community</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="/explore">Explore</a>
+            <a href="/publish">Publish</a>
+            <a href="/community">Community</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
             <div class="topnav-right">
-                <a href="#"><i class="fa fa-search"></i></a>
-                <a id="subscribe" ref="#">Subscribe</a>
+                <a id="subscribe" href="/subscribe">Subscribe</a>
             </div>
         </div> 
-
-        <main class="container-fluid py-5 text-center">
-            {% block main %}{% endblock %}
-        </main>
-
-        
+        {% block main %}{% endblock %}
 
     </body>
 
