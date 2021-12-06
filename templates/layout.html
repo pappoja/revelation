@@ -33,13 +33,22 @@
                     </form>
                 </div>
                 {% if session["user_id"] %}
-                <a class="dropbtn" href="/">
-                    {% for user in users %}
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        {% for user in users %}
 
-                        {{ user.username }}
+                            {{ user.username }}
 
-                    {% endfor %}
-                </a>
+                        {% endfor %}
+                        <i class="fa fa-user"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/profile_articles">My Articles</a>
+                        <a href="/profile_favorites">My Favorites</a>
+                        <a href="/profile_settings">Settings</a>
+                        <a href="/logout">Log Out</a>
+                    </div>
+                </div>
                 {% else %}
                 <a href="/login">Log In</a>
                 {% endif %}

@@ -42,6 +42,34 @@ def index():
         return render_template("index.html", users=userrow)
 
 
+@app.route("/profile_articles")
+@login_required
+def index():
+    if session.get("user_id") is None:
+        return render_template("profile_articles.html")
+    else:
+        userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+        return render_template("index.html", users=userrow)
+
+@app.route("/profile_favorites")
+@login_required
+def index():
+    if session.get("user_id") is None:
+        return render_template("index.html")
+    else:
+        userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+        return render_template("index.html", users=userrow)
+
+@app.route("/profile_settings")
+@login_required
+def index():
+    if session.get("user_id") is None:
+        return render_template("index.html")
+    else:
+        userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+        return render_template("index.html", users=userrow)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user for an account."""
