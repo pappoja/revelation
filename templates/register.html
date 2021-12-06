@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block main %}
+<center>
+<br><br>
+<div class="signupbox">
+<br>
+   <div class="boxtitle">Sign Up</div><br>
+   {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}<br><br>
+   {% endif %}
+   <form action="/register" method="post">
+        <input id="firstname" type="text" placeholder="First Name" class="formfield2" name="fname">    <input id="lastname" type="text" placeholder="Last Name" class="formfield2" name="lname"><br><br>
+        <input id="username" type="text" placeholder="Username" class="formfield2" name="uname">    <input id="password" type="password" placeholder="Password" class="formfield2" name="pword"><br><br>
+        <input id="email" type="email" placeholder="Email" class="formfield2" name="email">    <input id="school" type="text" placeholder="School" class="formfield2" name="school"><br><br>
+        <select name="hsc" class="formselect">
+            <option value="hs">High School Student</option>
+            <option value="c">Undegraduate Student</option>
+        </select>    
+        <select name="re" class="formselect">
+            <option value="r">Researcher</option>
+            <option value="e">Editor</option>
+          </select>
+          <br><br>
+        <button type="submit" class="formbutton">Sign Up</button>
+   </form>
+   <br>
+   <div class="promptaccount">Already have an account?  | <a href="/login" class="promptreply">Log In</a></div>
+   <br>
+</div>
+<br><br>
+</center>
+{% endblock %}

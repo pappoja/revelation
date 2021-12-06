@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Publish
+{% endblock %}
+
+{% block main %}
+
+<div class="pagecontainer">
+    <div class="pagetitle">Publish</div>
+    {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}<br>
+   {% endif %}
+    <hr>
+    <form action="/publish" method="post">
+    <div class="pagesubtitle">Title</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <input id="articletitle" type="text" placeholder="Title" class="formfield3" name="article_title">
+    <br><br>
+    <div class="pagesubtitle">Secondary Authors</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <input id="secondaryauthors" type="text" placeholder="Secondary Authors" class="formfield3" name="article_secondary_authors">
+    <br><br>
+
+    <div class="pagesubtitle">Topic</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <select name="article_topic" class="formselect2">
+        <option value="">Topic</option>
+        <option value="Math">Math</option>
+        <option value="Physical Science">Physical Science</option>
+        <option value="Life Science">Life Science</option>
+        <option value="Social Science">Social Science</option>
+        <option value="Earth Science">Earth Science</option>
+    </select> 
+    <br><br>
+
+    <div class="pagesubtitle">Abstract</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="abstract" type="text" placeholder="Abstract" rows="10" class="formfield3" name="article_abstract"></textarea>
+    <br><br>
+    <div class="pagesubtitle">Introduction</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="introduction" type="text" placeholder="Introduction" rows="10" class="formfield3" name="article_introduction"></textarea>
+    <br><br>
+    <div class="pagesubtitle">Materials and Methods</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="materialsmethods" type="text" placeholder="Materials and Methods" rows="10" class="formfield3" name="article_materials_methods"></textarea>
+    <br><br>
+    <div class="pagesubtitle">Results</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="results" type="text" placeholder="Results" rows="10" class="formfield3" name="article_results"></textarea>
+    <br><br>
+    <div class="pagesubtitle">Discussion</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="discussion" type="text" placeholder="Discussion" rows="10" class="formfield3" name="article_discussion"></textarea>
+    <br><br>
+    <div class="pagesubtitle">Conclusion</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="conclusion" type="text" placeholder="Conclusion" rows="10" class="formfield3" name="article_conclusion"></textarea>
+    <br><br>
+    <div class="pagesubtitle">References</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="references" type="text" placeholder="References" rows="10" class="formfield3" name="article_references"></textarea>
+    <br><br>
+    <button type="submit" class="formbutton2">Publish</button>
+    <br><br>
+    </form>
+</div>
+
+{% endblock %}

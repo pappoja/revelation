@@ -1,1 +1,27 @@
-hello
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<center>
+<br><br><br><br>
+<div class="loginbox">
+    <br>
+   <div class="boxtitle">Log In</div><br>
+   {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}<br><br>
+   {% endif %}
+   <form action="/login" method="post">
+        <input id="username" type="text" placeholder="Username" class="formfield" name="username"><br><br>
+        <input id="password" type="password" placeholder="Password" class="formfield" name="password"><br><br>
+        <button type="submit" class="formbutton">Log In</button>
+   </form>
+   <br>
+   <div class="promptaccount">Don't have an account?  | <a href="/register" class="promptreply">Sign Up</a></div>
+   <br>
+</div>
+<br><br><br><br>
+</center>
+{% endblock %}

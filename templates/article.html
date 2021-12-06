@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Article
+{% endblock %}
+
+{% block main %}
+
+{% for article in articles %}
+<div class="pagecontainer">
+    <div class="colorblock" style="background-color: {{ article.color }}">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <br>
+    <div class="articletitle">{{ article.title }}</div>
+    {% for author in authors %}
+    <br>
+    <div class="articleauthors">By {{ author.firstname }} {{ author.lastname }}, {{ article.secondary_authors }}</div>
+    <hr>
+        <span class="articletopic"><b>{{ article.topic }}</b> | {{ article.date }}</span>
+        <span class="articlelabels">
+            {% set labellist = article.labels.split(',') %}
+            {% for item in labellist %}
+                <span class="labelitem" style="background-color: rgb({{ range(1, 150) | random }}, {{ range(0, 200) | random }}, {{ range(1, 150) | random }})">{{ item }}</span>
+            {% endfor %}
+        </span>
+    <hr>
+    <div class="pagesubtitle">Abstract</div>
+    <p>{{ article.abstract }}</p>
+    <div class="pagesubtitle">Introduction</div>
+    <p>{{ article.introduction }}</p>
+    <div class="pagesubtitle">Materials and Methods</div>
+    <p>{{ article.materials_methods }}</p>
+    <div class="pagesubtitle">Results</div>
+    <p>{{ article.results }}</p>
+    <div class="pagesubtitle">Discussion</div>
+    <p>{{ article.discussion }}</p>
+    <div class="pagesubtitle">Conclusion</div>
+    <p>{{ article.conclusion }}</p>
+    <div class="pagesubtitle">References</div>
+    <p>{{ article.articlereferences }}</p>
+    <hr>
+    {% for editor in editors %}
+    <div class="articleauthors">Edited by {{ editor.firstname }} {{ editor.lastname }}</div>
+    {% endfor %}
+    <br>
+
+    {% endfor %}
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

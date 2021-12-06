@@ -22,7 +22,7 @@
     </head>
 
     <body>
-
+    <div class="container">
         <div class="topnav">
             <a id="logo" href="/">revelation</a>
             <div class="topnav-right">
@@ -32,7 +32,17 @@
                       <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
+                {% if session["user_id"] %}
+                <a class="dropbtn" href="/">
+                    {% for user in users %}
+
+                        {{ user.username }}
+
+                    {% endfor %}
+                </a>
+                {% else %}
                 <a href="/login">Log In</a>
+                {% endif %}
             </div>
         </div> 
         <div class="topnav2">
@@ -46,6 +56,12 @@
             </div>
         </div> 
         {% block main %}{% endblock %}
+        <div class="footer">
+            <div class="topnav2" id="copyrightbar">
+               &copy 2021 Revelation Journal
+            </div>
+        </div>
+    </div>
 
     </body>
 
