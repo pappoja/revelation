@@ -25,29 +25,22 @@
     <div class="container">
         <div class="topnav">
             <a id="logo" href="/">revelation</a>
-            <div class="topnav-right">
-                {% if session["user_id"] %}
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        {% for user in users %}
+        </div>
 
-                            {{ user.username }}
 
-                        {% endfor %}
-                        <i class="fa fa-user"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="/">My Articles</a>
-                        <a href="/editor_profile_settings">Settings</a>
-                        <a href="/logout">Log Out</a>
-                    </div>
-                </div>
-                {% else %}
-                <a href="/login">Log In</a>
-                {% endif %}
+        <div class="pagecontainer">
+            <br>
+            <br>
+            <br>
+            <div class="errormessage">
+                <center><b>{{ top }}: {{ bottom }}</b></center>
+            </div>
+            <div class="errorsubtitle">
+                <center>Go back <a href="/" style="color: #ff8b00">home</a>?</center>
             </div>
         </div>
-        {% block main %}{% endblock %}
+
+
         <div class="footer">
             <div class="topnav2" id="copyrightbar">
                &copy 2021 Revelation Journal

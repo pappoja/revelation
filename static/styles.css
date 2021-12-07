@@ -499,3 +499,9 @@ button:focus {
     border-top-right-radius: 10px 10px;
     border-bottom-right-radius: 10px 10px;
 }
+
+.errormessage {
+    color: #838383;
+    font-family: 'Lora', serif;
+    font-size: 5vmax;
+}
