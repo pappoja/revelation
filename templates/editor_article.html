@@ -1,0 +1,117 @@
+{% extends "editorlayout.html" %}
+
+{% block title %}
+    Edit Article
+{% endblock %}
+
+{% block main %}
+    
+<div class="pagecontainer">
+    <div class="pagetitle">Edit Article</div>
+   {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}<br>
+   {% endif %}
+    <hr>
+    {% for article in articles %}
+    <form action="/editor_article" method="post">
+    <input type="text" value="{{ article.article_id }}" name="article_id" hidden readonly>
+    <div class="pagesubtitle">Title</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <input id="articletitle" type="text" value="{{ article.title }}" class="formfield3" name="article_title">
+    <br><br>
+    <div class="pagesubtitle">Secondary Authors</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <input id="secondaryauthors" type="text" value="{{ article.secondary_authors }}" class="formfield3" name="article_secondary_authors">
+    <br><br>
+
+    <div class="pagesubtitle">Topic</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <select name="article_topic" class="formselect2">
+        {% if article.topic == "Math" %}
+        <option value="">Topic</option>
+        <option value="Math" selected>Math</option>
+        <option value="Physical Science">Physical Science</option>
+        <option value="Life Science">Life Science</option>
+        <option value="Social Science">Social Science</option>
+        <option value="Earth Science">Earth Science</option>
+        {% endif %}
+
+        {% if article.topic == "Physical Science" %}
+        <option value="">Topic</option>
+        <option value="Math">Math</option>
+        <option value="Physical Science" selected>Physical Science</option>
+        <option value="Life Science">Life Science</option>
+        <option value="Social Science">Social Science</option>
+        <option value="Earth Science">Earth Science</option>
+        {% endif %}
+
+        {% if article.topic == "Life Science" %}
+        <option value="">Topic</option>
+        <option value="Math">Math</option>
+        <option value="Physical Science">Physical Science</option>
+        <option value="Life Science" selected>Life Science</option>
+        <option value="Social Science">Social Science</option>
+        <option value="Earth Science">Earth Science</option>
+        {% endif %}
+
+        {% if article.topic == "Social Science" %}
+        <option value="">Topic</option>
+        <option value="Math">Math</option>
+        <option value="Physical Science">Physical Science</option>
+        <option value="Life Science">Life Science</option>
+        <option value="Social Science" selected>Social Science</option>
+        <option value="Earth Science">Earth Science</option>
+        {% endif %}
+
+        {% if article.topic == "Earth Science" %}
+        <option value="">Topic</option>
+        <option value="Math">Math</option>
+        <option value="Physical Science">Physical Science</option>
+        <option value="Life Science">Life Science</option>
+        <option value="Social Science">Social Science</option>
+        <option value="Earth Science" selected>Earth Science</option>
+        {% endif %}
+    </select> 
+    <br><br>
+
+    <div class="pagesubtitle">Abstract</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="abstract" type="text" placeholder="Abstract" value="{{ article.abstract }}" rows="10" class="formfield3" name="article_abstract">{{ article.abstract }}</textarea>
+    <br><br>
+    <div class="pagesubtitle">Introduction</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="introduction" type="text" placeholder="Introduction" rows="10" class="formfield3" name="article_introduction">{{ article.introduction }}</textarea>
+    <br><br>
+    <div class="pagesubtitle">Materials and Methods</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="materialsmethods" type="text" placeholder="Materials and Methods" rows="10" class="formfield3" name="article_materials_methods">{{ article.materials_methods }}</textarea>
+    <br><br>
+    <div class="pagesubtitle">Results</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="results" type="text" placeholder="Results" rows="10" class="formfield3" name="article_results">{{ article.results }}</textarea>
+    <br><br>
+    <div class="pagesubtitle">Discussion</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="discussion" type="text" placeholder="Discussion" rows="10" class="formfield3" name="article_discussion">{{ article.discussion }}</textarea>
+    <br><br>
+    <div class="pagesubtitle">Conclusion</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="conclusion" type="text" placeholder="Conclusion" rows="10" class="formfield3" name="article_conclusion">{{ article.conclusion }}</textarea>
+    <br><br>
+    <div class="pagesubtitle">References</div>
+    <p class="supporttext">Lorem ipsum dolor...</p>
+    <textarea id="references" placeholder="Abstract" type="text" rows="10" class="formfield3" name="article_references">{{ article.introduction }}</textarea>
+    <br><br>
+    
+    <select name="article_status" class="formselect2">
+        <option value="Approve">Approve</option>
+        <option value="Reject">Reject</option>
+    </select>
+    <br><br>
+    <button type="submit" class="formbutton2">Publish</button>
+    <br><br>
+    </form>
+    {% endfor %}
+</div>
+        
+{% endblock %}

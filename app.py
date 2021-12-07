@@ -23,7 +23,6 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///revelation.db")
 
-
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -39,8 +38,83 @@ def index():
         return render_template("index.html")
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
-        return render_template("index.html", users=userrow)
+        if userrow[0]["re"] == 0:
+            return render_template("index.html", users=userrow)
+        else:
+            articlerow = db.execute("SELECT * FROM articles WHERE editor = ?", session["user_id"])
+            return render_template("editor_dashboard.html", users=userrow, articles=articlerow)
 
+@app.route("/editor_article", methods=['GET', 'POST'])
+@login_required
+def editor_article():
+    if request.method == "POST":
+        # Validate form submission
+        if not request.form.get("article_title"):
+            error = 'Missing title'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_topic"):
+            error = 'Missing topic'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_abstract"):
+            error = 'Missing abstract'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_introduction"):
+            error = 'Missing introduction'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_materials_methods"):
+            error = 'Missing materials and methods'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_results"):
+            error = 'Missing results'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_discussion"):
+            error = 'Missing discussion'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_conclusion"):
+            error = 'Missing conclusion'
+            return render_template('editor_article.html', error=error)
+        elif not request.form.get("article_references"):
+            error = 'Missing references'
+            return render_template('editor_article.html', error=error)
+        status = 0
+        if request.form.get("article_status") == "Approve":
+            status = 1
+        elif request.form.get("article_status") == "Reject":
+            status = 2
+        print(status)
+        security = db.execute("SELECT * FROM articles WHERE article_id = ?", request.form.get("article_id"))
+        if (security[0]["editor"] == session["user_id"]):
+            db.execute("UPDATE articles SET secondary_authors = ?, topic = ?, title = ?, abstract = ?, introduction = ?, materials_methods = ?, results = ?, discussion = ?, conclusion = ?, articlereferences = ?, status = ? WHERE article_id = ?",
+                                request.form.get("article_secondary_authors"),
+                                request.form.get("article_topic"),
+                                request.form.get("article_title"),
+                                request.form.get("article_abstract"),
+                                request.form.get("article_introduction"),
+                                request.form.get("article_materials_methods"),
+                                request.form.get("article_results"),
+                                request.form.get("article_discussion"),
+                                request.form.get("article_conclusion"),
+                                request.form.get("article_references"),
+                                status,
+                                request.form.get("article_id"))
+            return redirect("/")
+        else:
+            return redirect("/")
+        
+    else:
+        if session.get("user_id") is None:
+            return redirect("/")
+        else:
+            if request.args.get("id") and request.args.get("id").isnumeric():
+                userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+                articlerow = db.execute("SELECT * FROM articles WHERE article_id = ? AND editor = ?", request.args.get("id"), session["user_id"])
+                if len(articlerow) > 0:
+                    authorrow = db.execute("SELECT * FROM users WHERE user_id = ?", articlerow[0]["primary_author_id"])
+                    return render_template("editor_article.html", users=userrow, articles=articlerow, authors=authorrow)
+                else:
+                    return redirect("/")
+            else:
+                return redirect("/")
 
 @app.route("/profile_articles")
 @login_required
@@ -76,19 +150,15 @@ def password_change():
         elif not request.form.get("newpassword"):
             error = 'Missing new password'
             return render_template('settings.html', users=userrow, passerror=error)
-        elif request.form.get("currentpassword") == request.form.get("confirmpassword"):
+        elif str(request.form.get("currentpassword")).strip() != str(request.form.get("confirmpassword")).strip():
             error = 'Passwords don\'t match'
             return render_template('settings.html', users=userrow, passerror=error)
         elif not check_password_hash(userrow[0]["password"], request.form.get("currentpassword")):
             error = 'Invalid current password'
+            return render_template('settings.html', users=userrow, passerror=error)
         
-        db.execute("UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, school = ?, hsc = ? WHERE user_id = ?",
-                            request.form.get("firstname"),
-                            request.form.get("lastname"),
-                            request.form.get("username"),
-                            request.form.get("email"),
-                            request.form.get("school"),
-                            hscvalue,
+        db.execute("UPDATE users SET password = ? WHERE user_id = ?",
+                            generate_password_hash(request.form.get("newpassword")),
                             session["user_id"])
         success = 'Successfully changed password'
         return render_template('settings.html', users=userrow, passsuccess=success)
@@ -427,13 +497,6 @@ def publish():
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
         return render_template("publish.html", users=userrow)
-
-
-@app.route("/sell", methods=["GET", "POST"])
-@login_required
-def sell():
-    """Sell shares of stock"""
-    return apology("TODO")
 
 
 def errorhandler(e):
