@@ -35,11 +35,15 @@ def after_request(response):
 @app.route("/")
 def index():
     if session.get("user_id") is None:
-        return render_template("index.html")
+        articlerow = db.execute("SELECT * FROM articles WHERE status = 1 ORDER BY RANDOM() LIMIT 5")
+        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 5")
+        return render_template("index.html", articles=articlerow, community=communityrow)
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
         if userrow[0]["re"] == 0:
-            return render_template("index.html", users=userrow)
+            articlerow = db.execute("SELECT * FROM articles WHERE status = 1 ORDER BY RANDOM() LIMIT 5")
+            communityrow = db.execute("SELECT * FROM users WHERE user_id != ? ORDER BY RANDOM() LIMIT 5", session["user_id"])
+            return render_template("index.html", users=userrow, articles=articlerow, community=communityrow)
         else:
             articlerow = db.execute("SELECT * FROM articles WHERE editor = ?", session["user_id"])
             return render_template("editor_dashboard.html", users=userrow, articles=articlerow)
@@ -123,7 +127,7 @@ def profile_articles():
         return render_template("index.html")
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
-        articlerow = db.execute("SELECT * FROM articles WHERE primary_author_id = ? ORDER BY date", session["user_id"])
+        articlerow = db.execute("SELECT * FROM articles WHERE primary_author_id = ? ORDER BY date DESC", session["user_id"])
         return render_template("profile_articles.html", users=userrow, articles=articlerow)
 
 @app.route("/profile_favorites")
