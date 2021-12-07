@@ -44,30 +44,105 @@ def index():
 
 @app.route("/profile_articles")
 @login_required
-def index():
+def profile_articles():
     if session.get("user_id") is None:
-        return render_template("profile_articles.html")
+        return render_template("index.html")
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
-        return render_template("index.html", users=userrow)
+        articlerow = db.execute("SELECT * FROM articles WHERE primary_author_id = ? ORDER BY date", session["user_id"])
+        return render_template("profile_articles.html", users=userrow, articles=articlerow)
 
 @app.route("/profile_favorites")
 @login_required
-def index():
+def profile_favorites():
     if session.get("user_id") is None:
         return render_template("index.html")
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
         return render_template("index.html", users=userrow)
 
-@app.route("/profile_settings")
+@app.route("/password_change", methods=['GET', 'POST'])
 @login_required
-def index():
-    if session.get("user_id") is None:
-        return render_template("index.html")
-    else:
+def password_change():
+    if request.method == "POST":
+        # Validate form submission
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
-        return render_template("index.html", users=userrow)
+        if not request.form.get("currentpassword"):
+            error = 'Missing current password'
+            return render_template('settings.html', users=userrow, passerror=error)
+        elif not request.form.get("confirmpassword"):
+            error = 'Missing password confirmation'
+            return render_template('settings.html', users=userrow, passerror=error)
+        elif not request.form.get("newpassword"):
+            error = 'Missing new password'
+            return render_template('settings.html', users=userrow, passerror=error)
+        elif request.form.get("currentpassword") == request.form.get("confirmpassword"):
+            error = 'Passwords don\'t match'
+            return render_template('settings.html', users=userrow, passerror=error)
+        elif not check_password_hash(userrow[0]["password"], request.form.get("currentpassword")):
+            error = 'Invalid current password'
+        
+        db.execute("UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, school = ?, hsc = ? WHERE user_id = ?",
+                            request.form.get("firstname"),
+                            request.form.get("lastname"),
+                            request.form.get("username"),
+                            request.form.get("email"),
+                            request.form.get("school"),
+                            hscvalue,
+                            session["user_id"])
+        success = 'Successfully changed password'
+        return render_template('settings.html', users=userrow, passsuccess=success)
+    else:
+        if session.get("user_id") is None:
+            return render_template("index.html")
+        else:
+            userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+            return render_template("settings.html", users=userrow)
+
+@app.route("/profile_settings", methods=['GET', 'POST'])
+@login_required
+def profile_settings():
+    if request.method == "POST":
+        # Validate form submission
+        userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+        if not request.form.get("firstname"):
+            error = 'Missing first name'
+            return render_template('settings.html', users=userrow, error=error)
+        elif not request.form.get("lastname"):
+            error = 'Missing last name'
+            return render_template('settings.html', users=userrow, error=error)
+        elif not request.form.get("username"):
+            error = 'Missing username'
+            return render_template('settings.html', users=userrow, error=error)
+        elif not request.form.get("email"):
+            error = 'Missing email'
+            return render_template('settings.html', users=userrow, error=error)
+        elif not request.form.get("school"):
+            error = 'Missing school'
+            return render_template('settings.html', users=userrow, error=error)
+        elif not request.form.get("hsc"):
+            error = 'Missing high school/undegraduate'
+            return render_template('settings.html', users=userrow, error=error)
+        if request.form.get("hsc") == "hs":
+            hscvalue = 0
+        elif request.form.get("hsc") == "c":
+            hscvalue = 1
+        db.execute("UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, school = ?, hsc = ? WHERE user_id = ?",
+                            request.form.get("firstname"),
+                            request.form.get("lastname"),
+                            request.form.get("username"),
+                            request.form.get("email"),
+                            request.form.get("school"),
+                            hscvalue,
+                            session["user_id"])
+        success = 'Successfully updated settings!'
+        return render_template('settings.html', users=userrow, success=success)
+    else:
+        if session.get("user_id") is None:
+            return render_template("index.html")
+        else:
+            userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+            return render_template("settings.html", users=userrow)
 
 
 @app.route("/register", methods=["GET", "POST"])

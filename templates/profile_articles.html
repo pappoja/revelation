@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Publish
+{% endblock %}
+
+{% block main %}
+
+<div class="pagecontainer">
+    <div class="pagetitle">My Articles</div>
+    <hr>
+<br>
+    <table class="pagetable">
+        <tr class="toprow">
+            <th>Date</th>
+            <th>Title</th>
+            <th>Abstract</th>
+            <th>Status</th>
+        </tr>
+
+        {% for article in articles %}
+
+        <tr>
+            <td class="articlecell">{{ article.date }}</td>
+            <td class="articlecell">{{ article.title }}</td>
+            <td class="articlecell">{{ article.abstract }}</td>
+            <td class="articlecell">
+                <p>
+                    {% if article.status == 0 %}
+                        Awaiting Editing
+                    {% elif article.status == 1 %}
+                        Published
+                        <center><a href="/article?id={{ article.article_id }}">Link</a></center>
+                    {% elif article.status == 2 %}
+                        Rejected
+                    {% endif %}
+                </p>
+
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+
+</div>
+
+{% endblock %}

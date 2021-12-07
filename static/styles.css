@@ -424,3 +424,15 @@ button:focus {
     color: #ff8b00;
     
 }
+
+.pagetable {
+    width: 100%;
+}
+
+.toprow {
+    color: #838383;
+}
+
+.articlecell {
+    padding: 20px;
+}

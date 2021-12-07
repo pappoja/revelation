@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Publish
+{% endblock %}
+
+{% block main %}
+
+<div class="pagecontainer">
+    <div class="pagetitle">Settings</div>
+    <hr>
+<div class="pagesubtitle">Change Password</div>
+{% if passerror %}
+<br>
+    <p class=error><strong>Error:</strong> {{ passerror }}<br>
+{% endif %}
+{% if passsuccess %}
+<br>
+    <p class=error><strong>Success:</strong> {{ passsuccess }}<br>
+{% endif %}
+<br>
+
+<form action="/password_change" method="post">
+    <input id="articletitle" placeholder="Current Password" type="password" class="formfield3" name="currentpassword">
+    <br><br>
+    <input id="articletitle" placeholder="Confirm Current Password" type="password" class="formfield3" name="confirmpassword">
+    <br><br>
+    <input id="articletitle" placeholder="New Password" type="password" class="formfield3" name="newpassword">
+<br><br>
+<button type="submit" class="formbutton2">Change Password</button>
+<br><br>
+</form>
+
+<hr>
+<div class="pagesubtitle">Update Information</div>
+{% if error %}
+<br>
+    <p class=error><strong>Error:</strong> {{ error }}<br>
+{% endif %}
+{% if success %}
+<br>
+    <p class=error><strong>Success:</strong> {{ success }}<br>
+{% endif %}
+<br>
+<form action="/profile_settings" method="post">
+
+    {% for user in users %}
+
+    <input id="articletitle" type="text" value="{{ user.firstname }}" class="formfield3" name="firstname">
+    <br><br>
+    <input id="articletitle" type="text" value="{{ user.lastname }}" class="formfield3" name="lastname">
+    <br><br>
+    <input id="articletitle" type="text" value="{{ user.username }}" class="formfield3" name="username">
+    <br><br>
+    <input id="articletitle" type="text" value="{{ user.email }}" class="formfield3" name="email">
+    <br><br>
+    <input id="articletitle" type="text" value="{{ user.school }}" class="formfield3" name="school">
+    <br><br>
+    <select name="hsc" class="formselect2">
+        {% if user.hsc == 0 %}
+        <option value="hs" selected>High School Student</option>
+        <option value="c">Undegraduate Student</option>
+        {% elif user.hsc == 1 %}
+        <option value="hs">High School Student</option>
+        <option value="c" selected>Undegraduate Student</option>
+        {% endif %}
+    </select>
+    <br><br>
+    
+    <button type="submit" class="formbutton2">Update Information</button>
+    </form>
+    {% endfor %}
+
+
+
+    <br>
+
+</div>
+
+{% endblock %}
