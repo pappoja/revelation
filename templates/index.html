@@ -53,14 +53,28 @@
                 <h4>Community</h4>
                 <hr>
                 {% for person in community %}
-                    <div>{{ person.firstname }} {{ person.lastname }}</div>
-                    <div>
+                    <div class="communityname"> <b>{{ person.firstname }} {{ person.lastname }}</b><i style="color: #ff8b00;float: right;font-size: 1.5vmax;" class="fa fa-user"></i></div>
+                    <div class="communitybyline">
+
                         {% if person.re == 0 %}
                             Researcher
                         {% endif %}
                         {% if person.re == 1 %}
                             Editor
                         {% endif %}
+
+                        <span style="float: right;">
+                        {% if person.hsc == 0 %}
+                            HS
+                        {% endif %}
+                        {% if person.hsc == 1 %}
+                            C
+                        {% endif %}
+                        </span>
+
+                    </div>
+                    <div class="communityschool">
+                        {{ person.school }}
                     </div>
 
                     <hr>

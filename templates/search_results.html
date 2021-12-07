@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+
+<div class="pagecontainer">
+    <div class="searchholder">
+        <br>
+        <br>
+        <center>
+        <div class="search-container-holder">
+            <form action="/search" method="get">
+              <input type="text" autocomplete="off" placeholder="Search..." name="keyword" value="{{ request.args.get('keyword') }}">
+              <button type="submit">Search</button>
+            </form>
+        </div>
+        </center>
+        </br>
+        </br>
+    </div>
+    <br>
+    <div class="pagetitle">Search Results</div>
+    <hr>
+    {% if articles %}
+    {% for article in articles %}
+    <div class="searchresult">
+        <div style="height: 1.5em; background-color: {{ article.color }}"></div>
+        <div style="height: 0.5em;"></div>
+        <a href="article?id={{ article.article_id }}"><div class="pagesubtitle searchtitle">{{ article.title }}</div></a>
+        <div style="height: 0.5em;"></div>
+        <small class="articletopic"><b>{{ article.topic }}</b><span style="float:right; ">{{ article.date }}</span></small>
+        <div style="height: 0.5em;"></div>
+        <div class="supporttext">{{ article.abstract }}</div>
+    </div>
+    <br>
+    {% endfor %}
+    {% else %}
+    <div class="searchresult">
+        <br>
+        No results found
+        <br>
+    </div>
+    <br>
+    {% endif %}
+
+</div>
+
+{% endblock %}

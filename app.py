@@ -31,22 +31,37 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-
 @app.route("/")
 def index():
     if session.get("user_id") is None:
         articlerow = db.execute("SELECT * FROM articles WHERE status = 1 ORDER BY RANDOM() LIMIT 5")
-        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 5")
+        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 8")
         return render_template("index.html", articles=articlerow, community=communityrow)
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
         if userrow[0]["re"] == 0:
             articlerow = db.execute("SELECT * FROM articles WHERE status = 1 ORDER BY RANDOM() LIMIT 5")
-            communityrow = db.execute("SELECT * FROM users WHERE user_id != ? ORDER BY RANDOM() LIMIT 5", session["user_id"])
+            communityrow = db.execute("SELECT * FROM users WHERE user_id != ? ORDER BY RANDOM() LIMIT 8", session["user_id"])
             return render_template("index.html", users=userrow, articles=articlerow, community=communityrow)
         else:
             articlerow = db.execute("SELECT * FROM articles WHERE editor = ?", session["user_id"])
             return render_template("editor_dashboard.html", users=userrow, articles=articlerow)
+
+@app.route("/search")
+def search():
+    if session.get("user_id") is None:
+        if request.args.get("keyword"):
+            articlerow = db.execute("SELECT * FROM articles WHERE title LIKE ? OR abstract LIKE ? OR introduction LIKE ? OR materials_methods LIKE ? OR results LIKE ? OR discussion LIKE ? OR conclusion LIKE ?", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%")
+            return render_template("search_results.html", articles=articlerow)
+        else:
+            return redirect("/")
+    else:
+        if request.args.get("keyword"):
+            userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+            articlerow = db.execute("SELECT * FROM articles WHERE title LIKE ? OR abstract LIKE ? OR introduction LIKE ? OR materials_methods LIKE ? OR results LIKE ? OR discussion LIKE ? OR conclusion LIKE ?", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%", "%"+str(request.args.get("keyword"))+"%")
+            return render_template("search_results.html", users=userrow, articles=articlerow)
+        else:
+            return redirect("/")
 
 @app.route("/editor_article", methods=['GET', 'POST'])
 @login_required
@@ -273,7 +288,7 @@ def register():
             revalue = 1
 
         # Add user to database
-        db.execute("INSERT INTO users (firstname, lastname, username, password, email, school, hsc, re, bio) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        db.execute("INSERT INTO users (firstname, lastname, username, password, email, school, hsc, re) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
                             request.form.get("fname"),
                             request.form.get("lname"),
                             request.form.get("uname"),
@@ -281,8 +296,7 @@ def register():
                             request.form.get("email"),
                             request.form.get("school"),
                             hscvalue,
-                            revalue,
-                            "Hello!")
+                            revalue)
 
         currentuser = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("uname"))
 

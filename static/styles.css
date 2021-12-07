@@ -440,3 +440,47 @@ button:focus {
 .articlesize {
     font-size: 1.5vmax;
 }
+
+.communityname {
+    color: #838383;
+}
+
+.communitybyline {
+    text-transform: uppercase;
+    font-size: 0.9vmax;
+}
+
+.communityschool {
+    font-size: 0.9vmax;
+}
+
+.search-container-holder {
+    display: inline-flex;
+}
+
+.searchholder {
+    background-color: #ff8b00;
+}
+
+.search-container-holder input {
+    display: inline-flex;
+    float: left;
+    font-family: 'Open Sans', sans-serif;
+    border: 0px;
+    font-size: 1em;
+    padding: 10px;
+    width: 60vmax;
+    border-top-left-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+}
+
+.search-container-holder button {
+    float: right;
+    padding: 12px;
+    margin-right: 24px;
+    font-size: 0.83em;
+    cursor: pointer;
+    border: 0px;
+    border-top-right-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+}
