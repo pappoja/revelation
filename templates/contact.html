@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Contact
+{% endblock %}
+
+{% block main %}
+<center>
+<br><br><br><br>
+<div class="contactbox">
+    <br>
+   <div class="boxtitle">Contact</div><br>
+   {% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}<br><br>
+   {% endif %}
+   {% if success %}
+    <p class="error"><strong>Success:</strong> {{ success }}<br><br>
+   {% endif %}
+   <form action="/contact" method="post">
+        <input id="email" type="email" placeholder="Email" class="formfield" name="email"><br><br>
+        <textarea id="message" type="message" rows="5" placeholder="Message" class="formfield" name="message"></textarea><br><br>
+        <button type="submit" class="formbutton">Contact</button>
+   </form>
+   <br>
+   <br>
+</div>
+<br><br><br><br>
+</center>
+{% endblock %}

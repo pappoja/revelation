@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Subscribe
+{% endblock %}
+
+{% block main %}
+<center>
+<br><br><br><br>
+<div class="subscribebox">
+    <br>
+   <div class="boxtitle">Subscribe</div><br>
+   {% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }}<br><br>
+   {% endif %}
+   {% if success %}
+    <p class="error"><strong>Success:</strong> {{ success }}<br><br>
+   {% endif %}
+   <form action="/subscribe" method="post">
+        <input id="email" type="email" placeholder="Email" class="formfield" name="email"><br><br>
+        <button type="submit" class="formbutton">Subscribe</button>
+   </form>
+   <br>
+   <br>
+</div>
+<br><br><br><br>
+</center>
+{% endblock %}

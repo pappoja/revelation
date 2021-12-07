@@ -221,6 +221,20 @@ button:focus {
     border: 1px solid #C8C8C8;
   }
 
+  .subscribebox {
+    text-align: center;
+    padding: 0px;
+    width: 350px;
+    border: 1px solid #C8C8C8;
+  }
+
+  .contactbox {
+    text-align: center;
+    padding: 0px;
+    width: 350px;
+    border: 1px solid #C8C8C8;
+  }
+
 .boxtitle {
     color: #ff8b00;
     font-family: 'Lora', serif;
@@ -442,6 +456,7 @@ button:focus {
 }
 
 .communityname {
+    font-size: 1vmax;
     color: #838383;
 }
 

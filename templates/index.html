@@ -21,8 +21,9 @@
                 <a href="/article?id={{ article.article_id }}">
                 <h2 class="articletitle">{{ article.title }}</h2>
                 </a>
-                <p>{{ article.abstract }}</p>
                 <small class="articletopic"><b>{{ article.topic }}</b><span style="float:right; ">{{ article.date }}</span></small>
+                <div style="height: 0.5em;"></div>
+                <p>{{ article.abstract }}</p>
                 <hr>
                     {% endif %}
                 {% endfor %}
@@ -53,16 +54,16 @@
                 <h4>Community</h4>
                 <hr>
                 {% for person in community %}
-                    <div class="communityname"> <b>{{ person.firstname }} {{ person.lastname }}</b><i style="color: #ff8b00;float: right;font-size: 1.5vmax;" class="fa fa-user"></i></div>
+                    <div class="communityname"> <b>{{ person.firstname }} {{ person.lastname }}</b><i style="color: #ff8b00;float: right;font-size: 1.2vmax;" class="fa fa-user"></i></div>
                     <div class="communitybyline">
-
+                        <b>
                         {% if person.re == 0 %}
                             Researcher
                         {% endif %}
                         {% if person.re == 1 %}
                             Editor
                         {% endif %}
-
+                        </b>
                         <span style="float: right;">
                         {% if person.hsc == 0 %}
                             HS

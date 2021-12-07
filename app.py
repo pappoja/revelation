@@ -315,6 +315,79 @@ def register():
             return redirect("/")
 
 
+@app.route("/about")
+def about():
+    if session.get("user_id") is None:
+         return render_template("about.html")
+    else:
+        userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+        return render_template("about.html", users=userrow)
+
+@app.route("/subscribe", methods=["GET", "POST"])
+def subscribe():
+    if request.method == "POST":
+        if not request.form.get("email"):
+            error = 'Missing email'
+            if session.get("user_id") is None:
+                return render_template("subscribe.html", error=error)
+            else:
+                userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+                return render_template('subscribe.html', error=error, users=userrow)
+        check = db.execute("SELECT * FROM subscribers WHERE email = ?", request.form.get("email"))
+        if len(check) > 0:
+            error = 'Already subscribed!'
+            if session.get("user_id") is None:
+                return render_template("subscribe.html", error=error)
+            else:
+                userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+                return render_template('subscribe.html', error=error, users=userrow)
+        db.execute("INSERT INTO subscribers (email) VALUES (?)", request.form.get("email"))
+        success = "You are now subscribed!"
+        if session.get("user_id") is None:
+            return render_template("subscribe.html", success=success)
+        else:
+            userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+            return render_template("subscribe.html", success=success, users=userrow)
+    else:
+        if session.get("user_id") is None:
+            return render_template("subscribe.html")
+        else:
+            userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+            return render_template("subscribe.html", users=userrow)
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        if not request.form.get("email"):
+            error = 'Missing email'
+            if session.get("user_id") is None:
+                return render_template("contact.html", error=error)
+            else:
+                userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+                return render_template('contact.html', error=error, users=userrow)
+        if not request.form.get("message"):
+            error = 'Missing message'
+            if session.get("user_id") is None:
+                return render_template("contact.html", error=error)
+            else:
+                userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+                return render_template('contact.html', error=error, users=userrow)
+        db.execute("INSERT INTO messages (email, message) VALUES (?, ?)", request.form.get("email"), request.form.get("message"))
+        success = "Message has been sent!"
+        if session.get("user_id") is None:
+            return render_template("contact.html", success=success)
+        else:
+            userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+            return render_template("contact.html", success=success, users=userrow)
+    else:
+        if session.get("user_id") is None:
+            return render_template("contact.html")
+        else:
+            userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+            return render_template("contact.html", users=userrow)
+
+
 @app.route("/article")
 def article():
     if session.get("user_id") is None:

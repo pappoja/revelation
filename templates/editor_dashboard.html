@@ -11,6 +11,7 @@
     <div class="pagetitle">Articles to Edit</div>
     <hr>
 <br>
+{% if articles %}
     <table class="pagetable">
         <tr class="toprow">
             <th>Date</th>
@@ -49,6 +50,11 @@
 
     </table>
     <br>
+{% else %}
+
+<p class="supporttext">No articles to edit</p>
+
+    {% endif%}
 
 </div>
         
