@@ -546,3 +546,27 @@ button:focus {
     color: #ff8b00;
     font-family: 'Lora', serif;
 }
+
+.personname {
+    padding: 10px;
+    color: #ff8b00;
+    font-family: 'Lora', serif;
+    font-size: 1.3vmax;    
+}
+
+.personbio {
+    margin: 5px;
+    color: #838383;
+    font-size: 0.9vmax;
+}
+
+.communitycol {
+    border: 1px solid #C8C8C8;
+    margin: 10px;
+ }
+ 
+ .articletitlebox {
+     padding: 10px;
+     color: #ff8b00;
+     font-family: 'Lora', serif;
+ }

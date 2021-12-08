@@ -80,11 +80,11 @@ def explore():
 @app.route("/community")
 def community():
     if session.get("user_id") is None:
-        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 10")
+        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 7")
         return render_template("community.html", community=communityrow)
     else:
         userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
-        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 10")
+        communityrow = db.execute("SELECT * FROM users WHERE user_id != ? ORDER BY RANDOM() LIMIT 7", session["user_id"])
         return render_template("community.html", users=userrow, community=communityrow)
 
     

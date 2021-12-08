@@ -9,7 +9,67 @@
     <div class="pagecontainer">
         <div class="pagetitle">Community</div>
         <hr>
-        
+            <div class="row">
+                {% for person in community %}
+                    {% if loop.index <= 3 %}
+                    <div class="col communitycol">
+                        <div class="articlecommunity">
+                            <div class="personname">{{ person.firstname }} {{ person.lastname }}</div>
+                            <p><div class="personbio">
+                                @{{ person.username }} 
+                                <span style="float: right;  text-transform: uppercase;">
+                                    {% if person.re == 0 %}
+                                        <b>Researcher</b>
+                                    {% else %}
+                                        <b>Editor</b>
+                                    {% endif %}                                
+                                </span>
+                            </div></p>
+                            <p><div class="personbio">{{ person.school }} 
+                                <span style="float: right;  text-transform: uppercase;">
+                                    {% if person.hsc == 0 %}
+                                        <b>High School</b>
+                                    {% else %}
+                                        <b>College</b>
+                                    {% endif %}                                
+                                </span>
+                            </div></p>
+                        </div>
+                  </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for person in community %}
+                    {% if loop.index >= 4 %}
+                    <div class="col communitycol">
+                        <div class="articlecommunity">
+                            <div class="personname">{{ person.firstname }} {{ person.lastname }}</div>
+                            <p><div class="personbio">
+                                @{{ person.username }} 
+                                <span style="float: right;  text-transform: uppercase;">
+                                    {% if person.re == 0 %}
+                                        <b>Researcher</b>
+                                    {% else %}
+                                        <b>Editor</b>
+                                    {% endif %}                                
+                                </span>
+                            </div></p>
+                            <p><div class="personbio">{{ person.school }} 
+                                <span style="float: right;  text-transform: uppercase;">
+                                    {% if person.hsc == 0 %}
+                                        <b>High School</b>
+                                    {% else %}
+                                        <b>College</b>
+                                    {% endif %}                                
+                                </span>
+                            </div></p>
+                        </div>
+                  </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <br>
     </div>
 
 {% endblock %}
