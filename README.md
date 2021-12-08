@@ -2,7 +2,7 @@
 
 ## About Revelation
 
-Revelation Journal is a scientific research journal designed to be utilized by high school and undergraduate students. We understand the difficult for young researchers to getting their phenomenal research out into the world competing with the best scientists in the world who have an advantage across both experience and resources. We believe it is an important aspect of any young researcher's career to be able to publish one's work and allow researchers from all over the globe to access, learn from, and perhaps even cite the work in the context of their own research. Some of the main features of Revelation include the ability to publish one's own work, get feedback through a peer-review editing process, explore other young researchers' work, and get involved in the youth scientific community.
+Revelation Journal is a scientific research journal designed to be utilized by high school and undergraduate students. We understand the difficulty for young researchers to getting their phenomenal research out into the world competing with the best scientists in the world who have an advantage across both experience and resources. We believe it is an important aspect of any young researcher's career to be able to publish one's work and allow researchers from all over the globe to access, learn from, and perhaps even cite the work in the context of their own research. Some of the main features of Revelation include the ability to publish one's own work, get feedback through a peer-review editing process, explore other young researchers' work, and get involved in the youth scientific community.
 
 ### Built With
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -126,3 +126,16 @@ Project Link - [https://github.com/krishikishore/revelation](https://github.com/
 ## Acknowledgements
 
 - [https://www.w3schools.com/](https://www.w3schools.com/)
+- [https://stackoverflow.com/questions/45455993/resource-corpora-stopwords-not-found](https://stackoverflow.com/questions/45455993/resource-corpora-stopwords-not-found)
+- [https://stackoverflow.com/questions/41940663/how-can-i-change-the-host-and-port-that-the-flask-command-uses](https://stackoverflow.com/questions/41940663/how-can-i-change-the-host-and-port-that-the-flask-command-uses)
+- [https://www.analyticsvidhya.com/blog/2020/11/words-that-matter-a-simple-guide-to-keyword-extraction-in-python/](https://www.analyticsvidhya.com/blog/2020/11/words-that-matter-a-simple-guide-to-keyword-extraction-in-python/)
+- [https://stackoverflow.com/questions/28128400/keep-footer-at-the-bottom-of-the-page-with-scrolling-if-needed](https://stackoverflow.com/questions/28128400/keep-footer-at-the-bottom-of-the-page-with-scrolling-if-needed)
+- [https://stackoverflow.com/questions/1052772/keyboard-shortcut-to-untab-move-a-block-of-code-to-the-left-in-eclipse-apt](https://stackoverflow.com/questions/1052772/keyboard-shortcut-to-untab-move-a-block-of-code-to-the-left-in-eclipse-apt)
+- [https://www.codegrepper.com/code-examples/css/flask+render+template+not+getting+css](https://www.codegrepper.com/code-examples/css/flask+render+template+not+getting+css)
+- [https://stackoverflow.com/questions/13415152/submit-post-form-from-url](https://stackoverflow.com/questions/13415152/submit-post-form-from-url)
+- [https://www.nature.com/](https://www.nature.com/)
+- [https://www.youtube.com/watch?v=FVH-tXVRErg](https://www.youtube.com/watch?v=FVH-tXVRErg)
+- [https://www.hongkiat.com/blog/css-viewport-units-vw-vh-wmin-vmax/](https://www.hongkiat.com/blog/css-viewport-units-vw-vh-wmin-vmax/)
+- [https://stackoverflow.com/questions/16318413/dropdown-menu-z-index-problems](https://stackoverflow.com/questions/16318413/dropdown-menu-z-index-problems)
+- [https://support.mozilla.org/en-US/kb/websites-look-wrong-or-appear-differently](https://support.mozilla.org/en-US/kb/websites-look-wrong-or-appear-differently)
+- [https://www.tutorialspoint.com/How-to-Insert-Hyperlink-in-HTML-Page](https://www.tutorialspoint.com/How-to-Insert-Hyperlink-in-HTML-Page)
