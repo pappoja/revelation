@@ -2,6 +2,8 @@ import os
 import random
 import math
 import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
 
 from nltk import tokenize
 from operator import itemgetter
