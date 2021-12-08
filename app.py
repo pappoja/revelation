@@ -63,6 +63,32 @@ def search():
         else:
             return redirect("/")
 
+
+
+@app.route("/explore")
+def explore():
+    if session.get("user_id") is None:
+        articlerow = db.execute("SELECT * FROM articles WHERE status = 1 ORDER BY RANDOM() LIMIT 10")
+        return render_template("explore.html", articles=articlerow)
+    else:
+        userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+        articlerow = db.execute("SELECT * FROM articles WHERE status = 1 ORDER BY RANDOM() LIMIT 10")
+        return render_template("explore.html", users=userrow, articles=articlerow)
+
+
+
+@app.route("/community")
+def community():
+    if session.get("user_id") is None:
+        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 10")
+        return render_template("community.html", community=communityrow)
+    else:
+        userrow = db.execute("SELECT * FROM users WHERE user_id = ?", session["user_id"])
+        communityrow = db.execute("SELECT * FROM users ORDER BY RANDOM() LIMIT 10")
+        return render_template("community.html", users=userrow, community=communityrow)
+
+    
+
 @app.route("/editor_article", methods=['GET', 'POST'])
 @login_required
 def editor_article():

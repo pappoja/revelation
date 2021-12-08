@@ -505,3 +505,44 @@ button:focus {
     font-family: 'Lora', serif;
     font-size: 5vmax;
 }
+
+.explorecol {
+   border: 1px solid #C8C8C8;
+   margin: 10px;
+}
+
+.topicname {
+    color: #838383;
+    font-size: 1.5vmax;
+    font-family: 'Lora', serif;
+    padding: 10px;
+}
+
+
+.exploreimagebig {
+    width: 105%;
+    margin-left: -2.5%;
+}
+
+.exploreimagesmall {
+    width: 108%;
+    margin-left: -4%;
+}
+
+.topcolor {
+    width: 105%;
+    margin-left: -2.5%;
+    height: 1.5em;
+}
+
+.topcolorsmall {
+    width: 108%;
+    margin-left: -4%;
+    height: 1.5em;
+}
+
+.articletitlebox {
+    padding: 10px;
+    color: #ff8b00;
+    font-family: 'Lora', serif;
+}

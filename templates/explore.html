@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Explore
+{% endblock %}
+
+{% block main %}
+    
+    <div class="pagecontainer">
+        <div class="pagetitle">Explore</div>
+        <hr>
+            <div class="row explorerow">
+              <div class="col explorecol">
+                <div class="topicname">Life Science</div>
+                <img class="exploreimagebig" src="/static/lifescience.jpg" />
+                {% for article in articles %}
+                {% if article.topic == "Life Science" %}
+                <div class="articleexplore">
+                    <div class="topcolor" style="background-color: {{ article.color }};"></div>
+                    <a href="/article?id={{ article.article_id }}"><div class="articletitlebox">{{ article.title }}</div></a>
+                    <p><small class="articletopic"><b>{{ article.topic }}</b><span style="float:right; ">{{ article.date }}</span></small></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+              </div>
+              <div class="col explorecol">
+                <div class="topicname">Physical Science</div>
+                <img class="exploreimagebig" src="/static/physicalscience.jpg" />
+                {% for article in articles %}
+                {% if article.topic == "Physical Science" %}
+                <div class="articleexplore">
+                    <div class="topcolor" style="background-color: {{ article.color }};"></div>
+                    <a href="/article?id={{ article.article_id }}"><div class="articletitlebox">{{ article.title }}</div></a>
+                    <p><small class="articletopic"><b>{{ article.topic }}</b><span style="float:right; ">{{ article.date }}</span></small></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="row explorerow">
+              <div class="col explorecol">
+                <div class="topicname">Earth Science</div>
+                <img class="exploreimagesmall" src="/static/earthscience.jpg" />
+                {% for article in articles %}
+                {% if article.topic == "Earth Science" %}
+                <div class="articleexplore">
+                    <div class="topcolorsmall" style="background-color: {{ article.color }};"></div>
+                    <a href="/article?id={{ article.article_id }}"><div class="articletitlebox">{{ article.title }}</div></a>
+                    <p><small class="articletopic"><b>{{ article.topic }}</b><span style="float:right; ">{{ article.date }}</span></small></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+              <div class="col explorecol">
+                <div class="topicname">Social Science</div>
+                <img class="exploreimagesmall" src="/static/socialscience.jpg" />
+                {% for article in articles %}
+                {% if article.topic == "Social Science" %}
+                <div class="articleexplore">
+                    <div class="topcolorsmall" style="background-color: {{ article.color }};"></div>
+                    <a href="/article?id={{ article.article_id }}"><div class="articletitlebox">{{ article.title }}</div></a>
+                    <p><small class="articletopic"><b>{{ article.topic }}</b><span style="float:right; ">{{ article.date }}</span></small></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+              <div class="col explorecol">
+                <div class="topicname">Math</div>
+                <img class="exploreimagesmall" src="/static/math.jpg" />
+                {% for article in articles %}
+                {% if article.topic == "Math" %}
+                <div class="articleexplore">
+                    <div class="topcolorsmall" style="background-color: {{ article.color }};"></div>
+                    <a href="/article?id={{ article.article_id }}"><div class="articletitlebox">{{ article.title }}</div></a>
+                    <p><small class="articletopic"><b>{{ article.topic }}</b><span style="float:right; ">{{ article.date }}</span></small></p>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <br>
+    </div>
+
+{% endblock %}
