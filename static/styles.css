@@ -7,6 +7,26 @@ body a {
     text-decoration: none;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+/* layout.html */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#logo {
+    color:  #ff8b00;
+    font-family: 'Lora', serif;
+    font-size: 1.7em;
+}
+
 .topnav {
     background-color: #FFFFFF;
     border-bottom: 1px solid #C8C8C8;
@@ -27,35 +47,6 @@ body a {
 
 .topnav-right {
     float: right;
-}
-
-#logo {
-    color:  #ff8b00;
-    font-family: 'Lora', serif;
-    font-size: 1.4em;
-}
-
-.topnav2 {
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #C8C8C8;
-    padding: 10px 40px;
-    overflow: hidden;
-}
-
-.topnav2 a {
-    float: left;
-    color: #000000;
-    text-align: center;
-    padding: 0px 10px;
-    font-family: 'Open Sans', sans-serif;
-    text-decoration: none;
-    transition: 0.5s ease;
-    font-size: 0.9em;
-    display: inline;
-} 
-
-.topnav2 a:hover {
-    color: #ff8b00;
 }
 
 .search-container {
@@ -86,6 +77,70 @@ body a {
     border: 0px;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn .fa {
+    color: #ff8b00;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 157px;
+    z-index: 5;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9vmax;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    transition: 0.5s ease;
+    color: #ff8b00;
+}
+
+.topnav2 {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #C8C8C8;
+    padding: 10px 40px;
+    overflow: hidden;
+}
+
+.topnav2 a {
+    float: left;
+    color: #000000;
+    text-align: center;
+    padding: 0px 10px;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    transition: 0.5s ease;
+    font-size: 0.9em;
+    display: inline;
+}
+
+.topnav2 a:hover {
+    color: #ff8b00;
+}
+
 .topnav-right {
     float: right;
 }
@@ -94,6 +149,24 @@ body a {
     color: #ff8b00;
 }
 
+.footer {
+    margin-top: auto;
+}
+
+#copyrightbar {
+    border-top: 1px solid #C8C8C8;
+    font-size: 0.8em;
+}
+  
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+/* index page */
 .containermain {
     width: 100%;
     height: 300px;
@@ -114,10 +187,16 @@ body a {
     font-size: 1.8vmax;
 }
 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .main_column {
     float: left;
     width: 50%;
-  }
+}
 
 .main_column a:hover {
     text-decoration: none;
@@ -128,6 +207,13 @@ body a {
     text-decoration: none;
     color: #ff8b00;
     transition: 0.5s ease;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    text-decoration: none;
 }
 
 .secondary_column {
@@ -153,87 +239,46 @@ body a {
     transition: 0.5s ease;
 }
 
-.img {
-    width: 100%;
-    height: 70%;
-    padding: 20px;
-}
-  
-.card {
-    background-color: white;
-    padding: 20px;
-    margin-top: 20px;
-    text-decoration: none;
-}
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 800px) {
-    .leftcolumn, .rightcolumn {
-      width: 100%;
-      padding: 0;
-    }
-  }
-
-.boxofarticles {
-    background-color: #FFFFFF;
-    width: 48%;
-    padding: 5px 10px;
-    overflow: hidden;
-    margin: 1em;
-    float: left;
-    border: 1px solid #C8C8C8;
+.articlesize {
+    font-size: 1.5vmax;
 }
 
-.article-horizontal {
-    margin-top: 10px;
-    margin-bottom: 10px;
+.communityname {
+    font-size: 1vmax;
+    color: #838383;
 }
 
-.article-horizontal {
-    border: 1px solid #000000;
+.communitybyline {
+    text-transform: uppercase;
+    font-size: 0.9vmax;
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
+.communityschool {
+    font-size: 0.9vmax;
 }
+/* end of index */
 
-.loginbox {
-  text-align: center;
-  padding: 0px;
-  width: 350px;
-  border: 1px solid #C8C8C8;
-}
-
+/* register page */
 .signupbox {
     text-align: center;
     padding: 0px;
     width: 500px;
     border: 1px solid #C8C8C8;
-  }
+}
 
-  .subscribebox {
+.subscribebox {
     text-align: center;
     padding: 0px;
     width: 350px;
     border: 1px solid #C8C8C8;
-  }
+}
 
-  .contactbox {
+.contactbox {
     text-align: center;
     padding: 0px;
     width: 350px;
     border: 1px solid #C8C8C8;
-  }
+}
 
 .boxtitle {
     color: #ff8b00;
@@ -329,152 +374,30 @@ button:focus {
 .promptreply:hover {
     color: #000000;
 }
+/* end of register */
 
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+/* login page */
+.loginbox {
+    text-align: center;
+    padding: 0px;
+    width: 350px;
+    border: 1px solid #C8C8C8;
 }
+/* end of login (other classes already used) */
 
-.footer {
-    margin-top: auto;
-}
-
-#copyrightbar {
-    border-top: 1px solid #C8C8C8;
-    font-size: 0.8em;
-}
-
+/* search_results page */
 .pagecontainer {
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 20px;
 }
 
-.pagetitle {
-    color:#ff8b00;
-    font-family: 'Lora', serif;
-    font-size: 2em;
-}
-
-.pagesubtitle {
-    color:#ff8b00;
-    font-family: 'Lora', serif;
-    font-size: 1.5em;
-}
-
-.supporttext {
-    color: #838383;
-    font-family: 'Lora', serif;
-    font-size: 0.9em;
-}
-
-.articletitle {
-    font-family: 'Lora', serif;
-    font-size: 2vmax;
-    color: #ff8b00;
-}
-
-.articleauthors {
-    font-family: 'Lora', serif;
-    font-size: 1.3vmax;
-    color: #838383;
-}
-
-.articletopic {
-    text-transform: uppercase;
-}
-
-.articlelabels {
-    float: right;
-}
-
-.labelitem {
-    margin: 0px 5px;
-    color: #FFFFFF;
-    padding: 3px 5px;
-    border-radius: 2px;
-    font-size: 0.9vmax;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent;
-    color: black;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn .fa {
-    color: #ff8b00;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 157px;
-    z-index: 5;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 0.9vmax;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a:hover {
-    transition: 0.5s ease;
-    color: #ff8b00;
-    
-}
-
-.pagetable {
-    width: 100%;
-}
-
-.toprow {
-    color: #838383;
-}
-
-.articlecell {
-    padding: 20px;
-}
-
-.articlesize {
-    font-size: 1.5vmax;
-}
-
-.communityname {
-    font-size: 1vmax;
-    color: #838383;
-}
-
-.communitybyline {
-    text-transform: uppercase;
-    font-size: 0.9vmax;
-}
-
-.communityschool {
-    font-size: 0.9vmax;
+.searchholder {
+    background-color: #ff8b00;
 }
 
 .search-container-holder {
     display: inline-flex;
-}
-
-.searchholder {
-    background-color: #ff8b00;
 }
 
 .search-container-holder input {
@@ -500,54 +423,106 @@ button:focus {
     border-bottom-right-radius: 10px 10px;
 }
 
-.errormessage {
-    color: #838383;
+.pagetitle {
+    color:#ff8b00;
     font-family: 'Lora', serif;
-    font-size: 5vmax;
+    font-size: 2em;
 }
 
+.articletopic {
+    text-transform: uppercase;
+}
+
+.supporttext {
+    color: #838383;
+    font-family: 'Lora', serif;
+    font-size: 0.9em;
+}
+/* end of search_results */
+
+/* explore page */
 .explorecol {
-   border: 1px solid #C8C8C8;
-   margin: 10px;
-}
+    border: 1px solid #C8C8C8;
+    margin: 10px;
+ }
+ 
+ .topicname {
+     color: #000;
+     font-size: 1.5vmax;
+     font-family: 'Lora', serif;
+     padding: 10px;
+ }
+ 
+ 
+ .exploreimagebig {
+     width: 105%;
+     margin-left: -2.5%;
+ }
+ 
+ .exploreimagesmall {
+     width: 108%;
+     margin-left: -4%;
+ }
+ 
+ .topcolor {
+     width: 105%;
+     margin-left: -2.5%;
+     height: 1.5em;
+ }
+ 
+ .topcolorsmall {
+     width: 108%;
+     margin-left: -4%;
+     height: 1.5em;
+ }
+ 
+ .articletitlebox {
+     padding: 10px;
+     color: #ff8b00;
+     font-family: 'Lora', serif;
+ }
 
-.topicname {
-    color: #838383;
-    font-size: 1.5vmax;
+ /* end of explore */
+
+/* article page */
+.articletitle {
     font-family: 'Lora', serif;
-    padding: 10px;
-}
-
-
-.exploreimagebig {
-    width: 105%;
-    margin-left: -2.5%;
-}
-
-.exploreimagesmall {
-    width: 108%;
-    margin-left: -4%;
-}
-
-.topcolor {
-    width: 105%;
-    margin-left: -2.5%;
-    height: 1.5em;
-}
-
-.topcolorsmall {
-    width: 108%;
-    margin-left: -4%;
-    height: 1.5em;
-}
-
-.articletitlebox {
-    padding: 10px;
+    font-size: 2vmax;
     color: #ff8b00;
-    font-family: 'Lora', serif;
 }
 
-.personname {
+.articleauthors {
+    font-family: 'Lora', serif;
+    font-size: 1.3vmax;
+    color: #838383;
+}
+
+.articlelabels {
+    float: right;
+}
+
+.labelitem {
+    margin: 0px 5px;
+    color: #FFFFFF;
+    padding: 3px 5px;
+    border-radius: 2px;
+    font-size: 0.9vmax;
+}
+
+.pagesubtitle {
+    color:#ff8b00;
+    font-family: 'Lora', serif;
+    font-size: 1.5em;
+}
+/* end of article */
+
+/* community page */
+.communitycol {
+    border: 1px solid #C8C8C8;
+    margin: 10px;
+ }
+
+ .personname {
     padding: 10px;
     color: #ff8b00;
     font-family: 'Lora', serif;
@@ -559,14 +534,26 @@ button:focus {
     color: #838383;
     font-size: 0.9vmax;
 }
+/* end of community */
 
-.communitycol {
-    border: 1px solid #C8C8C8;
-    margin: 10px;
- }
- 
- .articletitlebox {
-     padding: 10px;
-     color: #ff8b00;
-     font-family: 'Lora', serif;
- }
+/* profile_articles page */
+.pagetable {
+    width: 100%;
+}
+
+.toprow {
+    color: #838383;
+}
+
+.articlecell {
+    padding: 20px;
+}
+/* end of profile_articles */
+
+/* apology page */
+.errormessage {
+    color: #838383;
+    font-family: 'Lora', serif;
+    font-size: 5vmax;
+}
+/* end of apology */

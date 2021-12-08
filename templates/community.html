@@ -13,7 +13,7 @@
                 {% for person in community %}
                     {% if loop.index <= 3 %}
                     <div class="col communitycol">
-                        <div class="articlecommunity">
+                        <div>
                             <div class="personname">{{ person.firstname }} {{ person.lastname }}</div>
                             <p><div class="personbio">
                                 @{{ person.username }} 
@@ -43,7 +43,7 @@
                 {% for person in community %}
                     {% if loop.index >= 4 %}
                     <div class="col communitycol">
-                        <div class="articlecommunity">
+                        <div>
                             <div class="personname">{{ person.firstname }} {{ person.lastname }}</div>
                             <p><div class="personbio">
                                 @{{ person.username }} 
